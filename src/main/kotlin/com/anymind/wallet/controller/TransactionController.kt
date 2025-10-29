@@ -26,8 +26,10 @@ class TransactionController(
 
     @GetMapping("/history")
     fun getBalanceHistory(
-        @Valid @RequestBody request: BalanceHistoryRequest
+        @RequestParam startDatetime: String,
+        @RequestParam endDatetime: String
     ): ResponseEntity<List<BalanceSnapshot>> {
+        val request = BalanceHistoryRequest(startDatetime, endDatetime)
         val response = transactionService.getBalanceHistory(request)
         return ResponseEntity.ok(response)
     }
