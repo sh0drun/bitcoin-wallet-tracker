@@ -38,6 +38,12 @@ class TransactionService(
         val startDatetime = OffsetDateTime.parse(request.startDatetime)
         val endDatetime = OffsetDateTime.parse(request.endDatetime)
 
+        if (startDatetime.isAfter(endDatetime)) {
+            throw com.anymind.wallet.exception.InvalidDateRangeException(
+                "Start datetime must be less than or equal to end datetime"
+            )
+        }
+
         val transactions = transactionRepository.findAllBeforeOrderByDatetime(endDatetime)
 
         return balanceCalculator.calculateHourlyBalances(startDatetime, endDatetime, transactions)

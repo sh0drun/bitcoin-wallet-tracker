@@ -36,6 +36,17 @@ class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errorResponse)
     }
 
+    @ExceptionHandler(InvalidDateRangeException::class)
+    fun handleInvalidDateRangeException(ex: InvalidDateRangeException): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            status = HttpStatus.BAD_REQUEST.value(),
+            message = ex.message ?: "Invalid date range",
+            errors = listOf("startDatetime must be less than or equal to endDatetime")
+        )
+
+        return ResponseEntity.badRequest().body(errorResponse)
+    }
+
     @ExceptionHandler(Exception::class)
     fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
         val errorResponse = ErrorResponse(
