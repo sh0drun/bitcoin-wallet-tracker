@@ -17,12 +17,12 @@ class TransactionService(
 ) {
 
     fun saveTransaction(request: SaveTransactionRequest): SaveTransactionResponse {
-        val parsedDatetime = OffsetDateTime.parse(request.datetime)
+        val parsedDatetime = OffsetDateTime.parse(request.datetime!!)
         val utcDatetime = parsedDatetime.withOffsetSameInstant(ZoneOffset.UTC)
 
         val transaction = Transaction(
             datetime = utcDatetime,
-            amount = request.amount
+            amount = request.amount!!
         )
 
         val savedTransaction = transactionRepository.save(transaction)
