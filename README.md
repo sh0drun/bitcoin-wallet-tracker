@@ -21,11 +21,13 @@ A Bitcoin wallet tracking system that records BTC transactions and provides hist
 docker-compose up -d postgres
 ```
 
-### 2. Build and run
+### 2. Build and run in terminal
 ```bash
 ./gradlew build
 java -jar build/libs/bitcoin-wallet-tracker-0.0.1-SNAPSHOT.jar
 ```
+
+Or build and bootJar from IDE
 
 Application starts at `http://localhost:8080`
 
