@@ -54,6 +54,8 @@ GET /api/transactions/history?startDatetime=2019-10-05T12:00:00Z&endDatetime=201
 ./gradlew test
 ```
 
+Or you can run tests from your IDE
+
 ## Docker Deployment
 ```bash
 docker-compose up --build
